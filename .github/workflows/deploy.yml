@@ -33,8 +33,8 @@ jobs:
             - run: ln -s /root/jelastic-cli.jar /github/home/jelastic-cli.jar
              # Authentification auprès de l'API de Jelastic Infomaniak
             - run: /root/jelastic/users/authentication/signin --login "$JELASTIC_USERNAME" --password "$JELASTIC_PASSWORD" --platformUrl app.jpc.infomaniak.com
-            env:
+              env:
                JELASTIC_USERNAME: ${{ secrets.JELASTIC_USERNAME }}
                JELASTIC_PASSWORD: ${{ secrets.JELASTIC_PASSWORD }}
                # Utilisation de l'API de Jelastic pour redéployer l'image Docker utilisé dans son environnement
-               - run: /root/jelastic/environment/control/redeploycontainersbygroup --envName $ENVNAME --nodeGroup cp --tag latest
+            - run: /root/jelastic/environment/control/redeploycontainersbygroup --envName $ENVNAME --nodeGroup cp --tag latest
